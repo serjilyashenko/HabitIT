@@ -1,0 +1,40 @@
+.app {
+}
+
+.app_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.habit_list {
+  background: antiquewhite;
+  border: 1px solid black;
+  border-radius: 2px;
+  max-width: 300px;
+  margin: 0 auto;
+  min-height: 50vh;
+  padding: 16px;
+}
+
+.new_habit_form {
+  margin-bottom: 16px;
+}
+
+.new_habit_name_label {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.new_habit_name_label_input {
+  flex: 1 1;
+}
+
+.habits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

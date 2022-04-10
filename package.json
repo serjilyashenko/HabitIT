@@ -1,7 +1,7 @@
 {
   "name": "habitit",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
+    "prettier": "^2.6.2",
     "vite": "^2.9.0"
   }
 }
