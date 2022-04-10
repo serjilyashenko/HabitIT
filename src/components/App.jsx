@@ -1,11 +1,11 @@
 import { useReducer, useEffect } from "react";
 import { getMemoState, setMemoState } from "../utils/memo";
 import appStyles from "./App.module.css";
-import { localStorageKey } from "../const";
 
 const now = new Date();
 now.setHours(0, 0, 0, 0);
 const isoDate = now.toISOString();
+const dateFormatted = new Intl.DateTimeFormat().format(now);
 
 const initialState = getMemoState() || {
   habits: [
@@ -84,6 +84,7 @@ export default function App() {
     <div className={appStyles.app}>
       <header className={appStyles.app_header}>
         <h1>HabbitIt</h1>
+        <p>{dateFormatted}</p>
       </header>
       <main className={appStyles.habit_list}>
         <form className={appStyles.new_habit_form} onSubmit={onAddSubmit}>
