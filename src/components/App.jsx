@@ -104,7 +104,7 @@ export default function App() {
             {habits
               .filter(({ deleted }) => !deleted)
               .map(({ id, name }) => (
-                <li key={id}>
+                <li className={appStyles.habit_item} key={id}>
                   <label>
                     <input
                       checked={completedHabitIds.includes(id)}
