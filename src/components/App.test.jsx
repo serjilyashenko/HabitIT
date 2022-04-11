@@ -4,5 +4,5 @@ import App from "./App";
 test("hello", () => {
   render(<App />);
 
-  expect(true).toBe(true);
+  expect(true).toBe(false);
 });
