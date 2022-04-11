@@ -5,4 +5,5 @@ module.exports = {
     ["@babel/preset-env", { modules: isTest ? "auto" : false }],
     ["@babel/preset-react", { runtime: "automatic" }],
   ],
+  plugins: ["@babel/plugin-transform-runtime"],
 };

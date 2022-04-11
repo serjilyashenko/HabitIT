@@ -1,34 +1,32 @@
 import { useReducer, useEffect } from "react";
 import { getMemoState, setMemoState } from "../utils/memo";
+import { getToday } from "../utils/date";
 import appStyles from "./App.module.css";
 
-const now = new Date();
-now.setHours(0, 0, 0, 0);
-const isoDate = now.toISOString();
-const dateFormatted = new Intl.DateTimeFormat().format(now);
-
-const initialState = getMemoState() || {
-  habits: [
-    {
-      id: 0,
-      name: "Your first habit",
-      deleted: false,
+const getInitialState = function (isoDate) {
+  return {
+    habits: [
+      {
+        id: 0,
+        name: "Your first habit",
+        deleted: false,
+      },
+      {
+        id: 1,
+        name: "Your second habit",
+        deleted: false,
+      },
+      {
+        id: 3,
+        name: "Deleted habit",
+        deleted: true,
+      },
+    ],
+    history: {
+      [isoDate]: [0],
     },
-    {
-      id: 1,
-      name: "Your second habit",
-      deleted: false,
-    },
-    {
-      id: 3,
-      name: "Deleted habit",
-      deleted: true,
-    },
-  ],
-  history: {
-    [isoDate]: [0],
-  },
-  error: null,
+    error: null,
+  };
 };
 
 function reducer(state, action) {
@@ -46,7 +44,7 @@ function reducer(state, action) {
         ],
       };
     case "HABIT_COMPLETE":
-      const completed = state.history[isoDate];
+      const completed = state.history[getToday().toISOString()] || [];
       const newCompleted = completed.includes(action.id)
         ? completed.filter((id) => id !== action.id)
         : [...completed, action.id];
@@ -55,16 +53,20 @@ function reducer(state, action) {
         ...state,
         history: {
           ...state.history,
-          [isoDate]: newCompleted,
+          [getToday().toISOString()]: newCompleted,
         },
       };
   }
 }
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const todayIso = getToday().toISOString();
+  const [state, dispatch] = useReducer(
+    reducer,
+    getMemoState() || getInitialState(todayIso)
+  );
   const { habits, history, error } = state;
-  const completedHabitIds = history[isoDate] || [];
+  const completedHabitIds = history[todayIso] || [];
 
   useEffect(() => {
     setMemoState(state);
@@ -84,7 +86,7 @@ export default function App() {
     <div className={appStyles.app}>
       <header className={appStyles.app_header}>
         <h1>HabbitIt</h1>
-        <p>{dateFormatted}</p>
+        <p>{new Intl.DateTimeFormat().format(getToday())}</p>
       </header>
       <main className={appStyles.habit_list}>
         <form className={appStyles.new_habit_form} onSubmit={onAddSubmit}>
