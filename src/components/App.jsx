@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import { getMemoState, setMemoState } from "../utils/memo";
 import { getToday } from "../utils/date";
 import appStyles from "./App.module.css";
@@ -61,6 +61,7 @@ function reducer(state, action) {
 
 export default function App() {
   const todayIso = getToday().toISOString();
+  // TODO: move to AppState abstraction
   const [state, dispatch] = useReducer(
     reducer,
     getMemoState() || getInitialState(todayIso)
@@ -68,6 +69,7 @@ export default function App() {
   const { habits, history, error } = state;
   const completedHabitIds = history[todayIso] || [];
 
+  // TODO: move to AppState abstraction
   useEffect(() => {
     setMemoState(state);
   }, [state]);
@@ -82,6 +84,9 @@ export default function App() {
     dispatch({ type: "HABIT_COMPLETE", id: habitId });
   }
 
+  // TODO: implement EditMode
+  // const [isEditing, setIsEditing] = useState(false);
+
   return (
     <div className={appStyles.app}>
       <header className={appStyles.app_header}>
@@ -89,19 +94,10 @@ export default function App() {
         <p>{new Intl.DateTimeFormat().format(getToday())}</p>
       </header>
       <main className={appStyles.habit_list}>
-        <form className={appStyles.new_habit_form} onSubmit={onAddSubmit}>
-          <label className={appStyles.new_habit_name_label}>
-            <input
-              autoFocus
-              name="new_habit"
-              className={appStyles.new_habit_name_label_input}
-              placeholder="Your habit"
-            />
-            <button type="submit">Add</button>
-          </label>
-        </form>
+        {/*TODO: implement EditMode*/}
+        {/*<button>Edit</button>*/}
         {error ? (
-          <div>Error</div>
+          <div>Error: Something Went Wrong</div>
         ) : (
           <ul className={appStyles.habits}>
             {habits
@@ -120,6 +116,17 @@ export default function App() {
               ))}
           </ul>
         )}
+        <form className={appStyles.new_habit_form} onSubmit={onAddSubmit}>
+          <label className={appStyles.new_habit_name_label}>
+            <input
+              autoFocus
+              name="new_habit"
+              className={appStyles.new_habit_name_label_input}
+              placeholder="Your habit"
+            />
+            <button type="submit">Add</button>
+          </label>
+        </form>
       </main>
     </div>
   );
