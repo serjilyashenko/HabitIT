@@ -2,6 +2,7 @@ import { useReducer, useEffect, useState } from "react";
 import { getMemoState, setMemoState } from "../utils/memo";
 import { getToday } from "../utils/date";
 import appStyles from "./App.module.css";
+import { MainScreen } from "./MainScreen";
 
 const getInitialState = function (isoDate) {
   return {
@@ -94,39 +95,20 @@ export default function App() {
         <p>{new Intl.DateTimeFormat().format(getToday())}</p>
       </header>
       <main className={appStyles.habit_list}>
-        {/*TODO: implement EditMode*/}
-        {/*<button>Edit</button>*/}
         {error ? (
           <div>Error: Something Went Wrong</div>
         ) : (
-          <ul className={appStyles.habits}>
-            {habits
-              .filter(({ deleted }) => !deleted)
-              .map(({ id, name }) => (
-                <li className={appStyles.habit_item} key={id}>
-                  <label>
-                    <input
-                      checked={completedHabitIds.includes(id)}
-                      type="checkbox"
-                      onChange={() => onCompleteHabit(id)}
-                    />
-                    {name}
-                  </label>
-                </li>
-              ))}
-          </ul>
-        )}
-        <form className={appStyles.new_habit_form} onSubmit={onAddSubmit}>
-          <label className={appStyles.new_habit_name_label}>
-            <input
-              autoFocus
-              name="new_habit"
-              className={appStyles.new_habit_name_label_input}
-              placeholder="Your habit"
+          <>
+            {/*TODO: implement EditMode*/}
+            {/*<button>Edit</button>*/}
+            <MainScreen
+              habits={habits}
+              completedHabitIds={completedHabitIds}
+              onCompleteHabit={onCompleteHabit}
+              onAddSubmit={onAddSubmit}
             />
-            <button type="submit">Add</button>
-          </label>
-        </form>
+          </>
+        )}
       </main>
     </div>
   );
