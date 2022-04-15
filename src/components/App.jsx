@@ -1,8 +1,9 @@
 import { useReducer, useEffect, useState } from "react";
 import { getMemoState, setMemoState } from "../utils/memo";
 import { getToday } from "../utils/date";
-import appStyles from "./App.module.css";
 import { MainScreen } from "./MainScreen";
+import { EditScreen } from "./EditScreen";
+import appStyles from "./App.module.css";
 
 const getInitialState = function (isoDate) {
   return {
@@ -85,8 +86,7 @@ export default function App() {
     dispatch({ type: "HABIT_COMPLETE", id: habitId });
   }
 
-  // TODO: implement EditMode
-  // const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className={appStyles.app}>
@@ -99,14 +99,21 @@ export default function App() {
           <div>Error: Something Went Wrong</div>
         ) : (
           <>
-            {/*TODO: implement EditMode*/}
-            {/*<button>Edit</button>*/}
-            <MainScreen
-              habits={habits}
-              completedHabitIds={completedHabitIds}
-              onCompleteHabit={onCompleteHabit}
-              onAddSubmit={onAddSubmit}
-            />
+            <div className={appStyles.controls_bar}>
+              <button onClick={() => setIsEditing(!isEditing)}>
+                {isEditing ? "❌" : "📝"}
+              </button>
+            </div>
+            {!isEditing ? (
+              <MainScreen
+                habits={habits}
+                completedHabitIds={completedHabitIds}
+                onCompleteHabit={onCompleteHabit}
+                onAddSubmit={onAddSubmit}
+              />
+            ) : (
+              <EditScreen />
+            )}
           </>
         )}
       </main>

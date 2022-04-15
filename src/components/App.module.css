@@ -10,6 +10,10 @@
   padding: 16px;
 }
 
+.controls_bar {
+  text-align: end;
+}
+
 .habit_list {
   background: antiquewhite;
   border: 1px solid black;
