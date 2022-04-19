@@ -16,4 +16,4 @@ https://habitit.netlify.app
 **Notes:**
 * LocalStorage persist habits
 * Keeps all history in LS
-* Tests are running on GitHub Actions
+* Tests are running on GitHub Actions.
