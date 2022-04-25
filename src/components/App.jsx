@@ -6,6 +6,9 @@ import { EditScreen } from "./EditScreen";
 import appStyles from "./App.module.css";
 
 const getInitialState = function (isoDate) {
+  // This is to try to track mobile safari clear localStorage problem
+  localStorage.setItem("initialization-date", isoDate);
+
   return {
     habits: [
       {
