@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useState } from "react";
+import { useReducer, useEffect, useState, useMemo } from "react";
 import { getMemoState, setMemoState } from "../utils/memo";
 import { getToday } from "../utils/date";
 import { MainScreen } from "./MainScreen";
@@ -63,17 +63,21 @@ function reducer(state, action) {
 
 export default function App() {
   const todayIso = getToday().toISOString();
+
+  const initialState = useMemo(() => {
+    return getMemoState() || getInitialState(todayIso);
+  }, [todayIso]);
+
   // TODO: move to AppState abstraction
-  const [state, dispatch] = useReducer(
-    reducer,
-    getMemoState() || getInitialState(todayIso)
-  );
+  const [state, dispatch] = useReducer(reducer, initialState);
   const { habits, history, error } = state;
-  const completedHabitIds = history[todayIso] || [];
+  const completedHabitIds = history?.[todayIso] || [];
 
   // TODO: move to AppState abstraction
   useEffect(() => {
-    setMemoState(state);
+    if (initialState !== state) {
+      setMemoState(state);
+    }
   }, [state]);
 
   function onAddSubmit(e) {
