@@ -4,8 +4,16 @@ export function MainScreen({
   habits,
   completedHabitIds,
   onCompleteHabit,
-  onAddSubmit,
+  addHabit,
 }) {
+  function onSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    addHabit(form.new_habit.value);
+    form.reset();
+  }
+
   return (
     <>
       <ul className={mainScreenStyles.habits}>
@@ -24,10 +32,9 @@ export function MainScreen({
             </li>
           ))}
       </ul>
-      <form className={mainScreenStyles.new_habit_form} onSubmit={onAddSubmit}>
+      <form className={mainScreenStyles.new_habit_form} onSubmit={onSubmit}>
         <label className={mainScreenStyles.new_habit_name_label}>
           <input
-            autoFocus
             name="new_habit"
             className={mainScreenStyles.new_habit_name_label_input}
             placeholder="Your habit"

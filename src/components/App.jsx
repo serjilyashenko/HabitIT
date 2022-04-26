@@ -37,12 +37,14 @@ const getInitialState = function (isoDate) {
 function reducer(state, action) {
   switch (action.type) {
     case "ADD_HABIT":
+      const newId =
+        Math.max(...state.habits.map((habit) => Number(habit.id))) + 1;
       return {
         ...state,
         habits: [
           ...state.habits,
           {
-            id: action.id,
+            id: newId,
             name: action.name,
             deleted: false,
           },
@@ -83,10 +85,8 @@ export default function App() {
     }
   }, [state]);
 
-  function onAddSubmit(e) {
-    e.preventDefault();
-    const newId = Math.max(...habits.map((habit) => Number(habit.id))) + 1;
-    dispatch({ type: "ADD_HABIT", id: newId, name: e.target.new_habit.value });
+  function addHabit(title) {
+    dispatch({ type: "ADD_HABIT", name: title });
   }
 
   function onCompleteHabit(habitId) {
@@ -116,7 +116,7 @@ export default function App() {
                 habits={habits}
                 completedHabitIds={completedHabitIds}
                 onCompleteHabit={onCompleteHabit}
-                onAddSubmit={onAddSubmit}
+                addHabit={addHabit}
               />
             ) : (
               <EditScreen />
