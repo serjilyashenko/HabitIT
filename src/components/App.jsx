@@ -102,9 +102,9 @@ export default function App() {
         <p>{new Intl.DateTimeFormat().format(getToday())}</p>
       </header>
       <main className={appStyles.habit_list}>
-        {error ? (
-          <div>Error: Something Went Wrong</div>
-        ) : (
+        {error && <div>Error: Something Went Wrong</div>}
+
+        {!error && (
           <>
             <div className={appStyles.controls_bar}>
               <button onClick={() => setIsEditing(!isEditing)}>
@@ -119,7 +119,7 @@ export default function App() {
                 addHabit={addHabit}
               />
             ) : (
-              <EditScreen />
+              <EditScreen habits={habits} />
             )}
           </>
         )}
