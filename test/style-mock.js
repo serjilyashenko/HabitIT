@@ -1,4 +1,4 @@
-module.exports = new Proxy(
+export default new Proxy(
   {},
   {
     get: function get(target, key) {

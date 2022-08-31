@@ -36,7 +36,7 @@ const getInitialState = function (isoDate) {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'ADD_HABIT':
+    case 'ADD_HABIT': {
       const newId =
         Math.max(...state.habits.map((habit) => Number(habit.id))) + 1;
       return {
@@ -50,7 +50,8 @@ function reducer(state, action) {
           },
         ],
       };
-    case 'HABIT_COMPLETE':
+    }
+    case 'HABIT_COMPLETE': {
       const completed = state.history[getToday().toISOString()] || [];
       const newCompleted = completed.includes(action.id)
         ? completed.filter((id) => id !== action.id)
@@ -63,6 +64,7 @@ function reducer(state, action) {
           [getToday().toISOString()]: newCompleted,
         },
       };
+    }
   }
 }
 
