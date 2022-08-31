@@ -21,14 +21,20 @@ export function EditScreen({ habits, onUpdateHabit }) {
               key={habit.id}
             >
               <div className={editScreenStyles.habit_item_content}>
-                <button
-                  className={classNames(
-                    editScreenStyles.select_button,
-                    editScreenStyles.select_button__alert
-                  )}
+                {/* By default Safari doesn't support buttons' foucs */}
+                <div
+                  className={editScreenStyles.select_button_wrapper}
+                  tabIndex={1}
                 >
-                  –
-                </button>
+                  <button
+                    className={classNames(
+                      editScreenStyles.select_button,
+                      editScreenStyles.select_button__alert
+                    )}
+                  >
+                    –
+                  </button>
+                </div>
                 {habit.name}
               </div>
               <div className={editScreenStyles.delete_submit}>

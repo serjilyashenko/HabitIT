@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   overflow: hidden;
-  justify-content: right;
+  justify-content: flex-end;
   margin-bottom: 12px;
 }
 
@@ -11,6 +11,10 @@
   display: flex;
   gap: 0.5em;
   min-width: 100%;
+}
+
+.select_button_wrapper {
+  outline: none;
 }
 
 .select_button {
@@ -34,5 +38,5 @@
 }
 
 .habit_item_container:focus-within .delete_submit {
-  max-width: 78px;
+  max-width: 80px;
 }
