@@ -1,29 +1,29 @@
-import { useReducer, useEffect, useState, useMemo } from "react";
-import { getMemoState, setMemoState } from "../utils/memo";
-import { getToday } from "../utils/date";
-import { MainScreen } from "./MainScreen";
-import { EditScreen } from "./EditScreen";
-import appStyles from "./App.module.css";
+import { useReducer, useEffect, useState, useMemo } from 'react';
+import { getMemoState, setMemoState } from '../utils/memo';
+import { getToday } from '../utils/date';
+import { MainScreen } from './MainScreen';
+import { EditScreen } from './EditScreen';
+import appStyles from './App.module.css';
 
 const getInitialState = function (isoDate) {
   // This is to try to track mobile safari clear localStorage problem
-  localStorage.setItem("initialization-date", isoDate);
+  localStorage.setItem('initialization-date', isoDate);
 
   return {
     habits: [
       {
         id: 0,
-        name: "Your first habit",
+        name: 'Your first habit',
         deleted: false,
       },
       {
         id: 1,
-        name: "Your second habit",
+        name: 'Your second habit',
         deleted: false,
       },
       {
         id: 3,
-        name: "Deleted habit",
+        name: 'Deleted habit',
         deleted: true,
       },
     ],
@@ -36,7 +36,7 @@ const getInitialState = function (isoDate) {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "ADD_HABIT":
+    case 'ADD_HABIT':
       const newId =
         Math.max(...state.habits.map((habit) => Number(habit.id))) + 1;
       return {
@@ -50,7 +50,7 @@ function reducer(state, action) {
           },
         ],
       };
-    case "HABIT_COMPLETE":
+    case 'HABIT_COMPLETE':
       const completed = state.history[getToday().toISOString()] || [];
       const newCompleted = completed.includes(action.id)
         ? completed.filter((id) => id !== action.id)
@@ -86,11 +86,11 @@ export default function App() {
   }, [state]);
 
   function addHabit(title) {
-    dispatch({ type: "ADD_HABIT", name: title });
+    dispatch({ type: 'ADD_HABIT', name: title });
   }
 
   function onCompleteHabit(habitId) {
-    dispatch({ type: "HABIT_COMPLETE", id: habitId });
+    dispatch({ type: 'HABIT_COMPLETE', id: habitId });
   }
 
   const [isEditing, setIsEditing] = useState(false);
@@ -108,7 +108,7 @@ export default function App() {
           <>
             <div className={appStyles.controls_bar}>
               <button onClick={() => setIsEditing(!isEditing)}>
-                {isEditing ? "❌" : "📝"}
+                {isEditing ? '❌' : '📝'}
               </button>
             </div>
             {!isEditing ? (

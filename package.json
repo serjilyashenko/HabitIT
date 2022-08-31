@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "npm run test &&vite build",
     "preview": "vite preview",
+    "prettier:check": "prettier --check --ignore-path .gitignore . --loglevel warn",
+    "prettier:fix": "prettier --write --ignore-path .gitignore .",
     "test": "jest"
   },
   "dependencies": {
@@ -21,7 +23,7 @@
     "@testing-library/user-event": "14.1.0",
     "@vitejs/plugin-react": "1.0.7",
     "jest": "27.5.1",
-    "prettier": "2.6.2",
-    "vite": "^3.0.0"
+    "prettier": "2.7.1",
+    "vite": "3.0.9"
   }
 }

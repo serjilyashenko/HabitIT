@@ -1,1 +1,1 @@
-export const localStorageKey = "habitit-v1.0";
+export const localStorageKey = 'habitit-v1.0';

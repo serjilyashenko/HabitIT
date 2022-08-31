@@ -1,4 +1,4 @@
-import editScreenStyles from "./EditScreen.module.css";
+import editScreenStyles from './EditScreen.module.css';
 
 export function EditScreen({ habits }) {
   return (

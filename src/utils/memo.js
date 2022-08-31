@@ -1,4 +1,4 @@
-import { localStorageKey } from "../const";
+import { localStorageKey } from '../const';
 
 export function getMemoState() {
   try {

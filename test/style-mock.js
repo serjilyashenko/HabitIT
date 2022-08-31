@@ -3,9 +3,9 @@ module.exports = new Proxy(
   {
     get: function get(target, key) {
       if (key === '__esModule') {
-        return false
+        return false;
       }
-      return key
+      return key;
     },
-  },
-)
+  }
+);

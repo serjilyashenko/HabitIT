@@ -1,4 +1,4 @@
-import mainScreenStyles from "./MainScreen.module.css";
+import mainScreenStyles from './MainScreen.module.css';
 
 export function MainScreen({
   habits,
