@@ -27,7 +27,7 @@ test("Don`t crushes if complete on the next day", async () => {
   jest.useFakeTimers().setSystemTime(new Date("2022-04-11"));
   rerender(<App />);
 
-  expect(screen.getByLabelText(/first(.*)habit/i)).not.toBeChecked();
+  expect(screen.getByLabelText(/first(.*)habit/i)).toBeChecked();
 
   userEvent.click(screen.getByLabelText(/first(.*)habit/i));
 
