@@ -15,11 +15,17 @@
 }
 
 .habit_list {
-  background: antiquewhite;
+  background: #242424;
   border: 1px solid black;
   border-radius: 2px;
   max-width: 300px;
   margin: 0 auto;
   min-height: 50vh;
   padding: 16px;
+}
+
+@media (prefers-color-scheme: light) {
+  .habit_list {
+    background: antiquewhite;
+  }
 }

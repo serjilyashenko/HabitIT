@@ -1,4 +1,38 @@
-.habit_item {
-  font-size: 18px;
+.habit_item_container {
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  justify-content: right;
   margin-bottom: 12px;
+}
+
+.habit_item_content {
+  align-items: center;
+  display: flex;
+  gap: 0.5em;
+  min-width: 100%;
+}
+
+.select_button {
+  background-color: green;
+  color: #f9f9f9;
+  position: relative;
+}
+
+.select_button__alert {
+  background-color: red;
+}
+
+.delete_submit {
+  max-width: 0;
+  transition: max-width 0.3s ease-in-out;
+}
+
+.delete_submit button {
+  background-color: red;
+  color: #f9f9f9;
+}
+
+.habit_item_container:focus-within .delete_submit {
+  max-width: 78px;
 }

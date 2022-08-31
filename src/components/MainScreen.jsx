@@ -33,14 +33,18 @@ export function MainScreen({
           ))}
       </ul>
       <form className={mainScreenStyles.new_habit_form} onSubmit={onSubmit}>
-        <label className={mainScreenStyles.new_habit_name_label}>
-          <input
-            name="new_habit"
-            className={mainScreenStyles.new_habit_name_label_input}
-            placeholder="Your habit"
-          />
+        <div className={mainScreenStyles.new_habit_name_label}>
+          <div
+            className={mainScreenStyles.new_habit_name_label_input_container}
+          >
+            <input
+              name="new_habit"
+              className={mainScreenStyles.new_habit_name_label_input}
+              placeholder="Your habit"
+            />
+          </div>
           <button type="submit">Add</button>
-        </label>
+        </div>
       </form>
     </>
   );

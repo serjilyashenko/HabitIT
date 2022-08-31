@@ -51,6 +51,20 @@ function reducer(state, action) {
         ],
       };
     }
+    case 'UPDATE_HABIT': {
+      return {
+        ...state,
+        habits: state.habits.map((habit) => {
+          if (action.id === habit.id) {
+            return {
+              ...habit,
+              ...action.override,
+            };
+          }
+          return habit;
+        }),
+      };
+    }
     case 'HABIT_COMPLETE': {
       const completed = state.history[getToday().toISOString()] || [];
       const newCompleted = completed.includes(action.id)
@@ -87,8 +101,13 @@ export default function App() {
     }
   }, [state]);
 
-  function addHabit(title) {
+  function onAddHabit(title) {
     dispatch({ type: 'ADD_HABIT', name: title });
+  }
+
+  function onUpdateHabit(habitId, override) {
+    console.log('>>', habitId, override);
+    dispatch({ type: 'UPDATE_HABIT', id: habitId, override });
   }
 
   function onCompleteHabit(habitId) {
@@ -110,7 +129,7 @@ export default function App() {
           <>
             <div className={appStyles.controls_bar}>
               <button onClick={() => setIsEditing(!isEditing)}>
-                {isEditing ? '❌' : '📝'}
+                {isEditing ? 'Done' : 'Edit'}
               </button>
             </div>
             {!isEditing ? (
@@ -118,10 +137,10 @@ export default function App() {
                 habits={habits}
                 completedHabitIds={completedHabitIds}
                 onCompleteHabit={onCompleteHabit}
-                addHabit={addHabit}
+                addHabit={onAddHabit}
               />
             ) : (
-              <EditScreen habits={habits} />
+              <EditScreen habits={habits} onUpdateHabit={onUpdateHabit} />
             )}
           </>
         )}
