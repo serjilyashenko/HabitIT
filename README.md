@@ -11,6 +11,7 @@ https://habitit.netlify.app
 - Vite.js
 - React
 - Prettier
+- ESlint
 - Jest
 - Testing Library
 - Babel(only for Jest+React config)
