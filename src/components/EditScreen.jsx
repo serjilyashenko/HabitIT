@@ -17,7 +17,6 @@ export function EditScreen({ habits, onUpdateHabit }) {
           .filter(({ deleted }) => !deleted)
           .map((habit) => (
             <li
-              tabIndex={1}
               className={editScreenStyles.habit_item_container}
               key={habit.id}
             >
