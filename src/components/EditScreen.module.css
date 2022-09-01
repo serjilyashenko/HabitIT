@@ -15,16 +15,7 @@
 
 .select_button_wrapper {
   outline: none;
-}
-
-.select_button {
-  background-color: green;
-  color: #f9f9f9;
-  position: relative;
-}
-
-.select_button__alert {
-  background-color: red;
+  line-height: 0;
 }
 
 .delete_submit {
