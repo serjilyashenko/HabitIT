@@ -26,6 +26,7 @@
 .delete_submit button {
   background-color: red;
   color: #f9f9f9;
+  padding: 0.15em 0.5em;
 }
 
 .habit_item_container:focus-within .delete_submit {

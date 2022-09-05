@@ -20,8 +20,8 @@ export function MainScreen({
         {habits
           .filter(({ deleted }) => !deleted)
           .map(({ id, name }) => (
-            <li className={mainScreenStyles.habit_item} key={id}>
-              <label>
+            <li key={id}>
+              <label className={mainScreenStyles.habit_item}>
                 <input
                   checked={completedHabitIds.includes(id)}
                   type="checkbox"

@@ -26,6 +26,7 @@
 
 @media (prefers-color-scheme: light) {
   .habit_list {
-    background: antiquewhite;
+    background-color: white;
+    border: 1px #f1a94a solid;
   }
 }

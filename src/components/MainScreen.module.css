@@ -19,5 +19,50 @@
 }
 
 .habit_item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5em;
   margin-bottom: 12px;
+}
+
+.habit_item input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 50%;
+  border: 1px #BDBDBD solid;
+  cursor: pointer;
+  position: relative;
+}
+
+.habit_item input[type='checkbox']:checked {
+  border-style: none;
+  background-color: #F2BD42;
+}
+
+/*
+  This is a bit tricky way to build.
+  The better way to build such controls is svg.
+ */
+
+.habit_item input[type='checkbox']:checked:after {
+  border-bottom: 2px solid #1a1a1a;
+  border-right: 2px solid #1a1a1a;
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  height: 10px;
+  width: 4px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+@media (prefers-color-scheme: light) {
+  .habit_item input[type='checkbox']:checked:after {
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+  }
 }
