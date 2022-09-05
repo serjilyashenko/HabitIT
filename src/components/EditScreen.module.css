@@ -21,6 +21,7 @@
 .delete_submit {
   max-width: 0;
   transition: max-width 0.3s ease-in-out;
+  line-height: 0;
 }
 
 .delete_submit button {
