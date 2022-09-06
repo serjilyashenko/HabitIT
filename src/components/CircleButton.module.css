@@ -1,5 +1,5 @@
 .circle_button {
-  background-color: #f9f9f9;
+  background-color: var(--button-color);
   border-radius: 50%;
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@
 }
 
 .circle_button__positive {
-  background-color: green;
+  background-color: var(--success-color);
 }
 
 /*
@@ -41,7 +41,7 @@
 }
 
 .circle_button__negative {
-  background-color: red;
+  background-color: var(--alert-color);
 }
 
 .circle_button__negative:after {

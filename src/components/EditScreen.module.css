@@ -25,7 +25,7 @@
 }
 
 .delete_submit button {
-  background-color: red;
+  background-color: var(--alert-color);
   color: #f9f9f9;
   padding: 0.15em 0.5em;
 }
