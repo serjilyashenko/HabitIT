@@ -20,7 +20,7 @@ export default function App() {
     <div className={appStyles.app}>
       <header className={appStyles.app_header}>
         <h1>HabitIt🐌</h1>
-        <p>{new Intl.DateTimeFormat().format(getToday())}</p>
+        <time>{new Intl.DateTimeFormat().format(getToday())}</time>
       </header>
       <main className={appStyles.habit_list}>
         {error && <div>Error: Something Went Wrong</div>}
