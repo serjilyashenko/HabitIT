@@ -8,7 +8,6 @@ import appStyles from './App.module.css';
 export default function App() {
   const {
     habits,
-    error,
     completedHabitIds,
     onCompleteHabit,
     onAddHabit,
@@ -23,26 +22,20 @@ export default function App() {
         <time>{new Intl.DateTimeFormat().format(getToday())}</time>
       </header>
       <main className={appStyles.habit_list}>
-        {error && <div>Error: Something Went Wrong</div>}
-
-        {!error && (
-          <>
-            <div className={appStyles.controls_bar}>
-              <button onClick={() => setIsEditing(!isEditing)}>
-                {isEditing ? 'Done' : 'Edit'}
-              </button>
-            </div>
-            {!isEditing ? (
-              <MainScreen
-                habits={habits}
-                completedHabitIds={completedHabitIds}
-                onCompleteHabit={onCompleteHabit}
-                addHabit={onAddHabit}
-              />
-            ) : (
-              <EditScreen habits={habits} onUpdateHabit={onUpdateHabit} />
-            )}
-          </>
+        <div className={appStyles.controls_bar}>
+          <button onClick={() => setIsEditing(!isEditing)}>
+            {isEditing ? 'Done' : 'Edit'}
+          </button>
+        </div>
+        {!isEditing ? (
+          <MainScreen
+            habits={habits}
+            completedHabitIds={completedHabitIds}
+            onCompleteHabit={onCompleteHabit}
+            addHabit={onAddHabit}
+          />
+        ) : (
+          <EditScreen habits={habits} onUpdateHabit={onUpdateHabit} />
         )}
       </main>
     </div>

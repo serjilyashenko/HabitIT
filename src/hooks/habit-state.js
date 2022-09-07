@@ -24,7 +24,6 @@ export const getInitialState = function (isoDate) {
     history: {
       [isoDate]: [0],
     },
-    error: null,
   };
 };
 
@@ -84,7 +83,7 @@ export function useHabitState() {
   }, [todayIso]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { habits, history, error } = state;
+  const { habits, history } = state;
   const completedHabitIds = history?.[todayIso] || [];
 
   useEffect(() => {
@@ -107,7 +106,6 @@ export function useHabitState() {
 
   return {
     habits,
-    error,
     completedHabitIds,
     onAddHabit,
     onUpdateHabit,
