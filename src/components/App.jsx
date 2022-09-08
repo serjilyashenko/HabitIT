@@ -14,12 +14,15 @@ export default function App() {
     onUpdateHabit,
   } = useHabitState();
   const [isEditing, setIsEditing] = useState(false);
+  const today = getToday();
 
   return (
     <div className={appStyles.app}>
       <header className={appStyles.app_header}>
         <h1>HabitIt🐌</h1>
-        <time>{new Intl.DateTimeFormat().format(getToday())}</time>
+        <time dateTime={today.toISOString().split('T')[0]}>
+          {new Intl.DateTimeFormat().format(today)}
+        </time>
       </header>
       <main className={appStyles.habit_list}>
         <div className={appStyles.controls_bar}>
