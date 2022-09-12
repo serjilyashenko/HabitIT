@@ -3,6 +3,7 @@ import { useHabitState } from '../hooks/habit-state';
 import { getToday } from '../utils/date';
 import { MainScreen } from './MainScreen';
 import { EditScreen } from './EditScreen';
+import { NewHabit } from './NewHabit';
 import appStyles from './App.module.css';
 
 export default function App() {
@@ -26,13 +27,16 @@ export default function App() {
       </header>
       <main className={appStyles.habit_list}>
         {!isEditing ? (
-          <MainScreen
-            habits={habits}
-            completedHabitIds={completedHabitIds}
-            onCompleteHabit={onCompleteHabit}
-            onEdit={() => setIsEditing(true)}
-            addHabit={onAddHabit}
-          />
+          <>
+            <MainScreen
+              habits={habits}
+              completedHabitIds={completedHabitIds}
+              onCompleteHabit={onCompleteHabit}
+              onUpdateHabit={onUpdateHabit}
+              onEdit={() => setIsEditing(true)}
+            />
+            <NewHabit onAdd={onAddHabit} />
+          </>
         ) : (
           <EditScreen
             habits={habits}

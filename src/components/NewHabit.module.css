@@ -2,6 +2,11 @@
   margin-bottom: 24px;
 }
 
+.new_habit_form:invalid button[type="submit"] {
+  opacity: .3;
+  pointer-events: none;
+}
+
 .new_habit_name_label {
   display: flex;
   flex-direction: row;

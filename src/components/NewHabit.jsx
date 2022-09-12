@@ -17,6 +17,7 @@ export function NewHabit({ onAdd }) {
             name="new_habit"
             className={newHabitStyles.new_habit_name_label_input}
             placeholder="Your habit"
+            required
           />
         </div>
         <button type="submit">Add</button>
