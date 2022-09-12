@@ -4,7 +4,7 @@ import { getToday } from '../utils/date';
 import { MainScreen } from './MainScreen';
 import { EditScreen } from './EditScreen';
 import { NewHabit } from './NewHabit';
-import githubLogo from '../assets/github.png';
+import { ReactComponent as GitHubIcon } from '../assets/github.svg';
 import appStyles from './App.module.css';
 
 export default function App() {
@@ -52,7 +52,7 @@ export default function App() {
           target="_blank"
           rel="noreferrer"
         >
-          <img src={githubLogo} className={appStyles.logo} alt="GitHub logo" />
+          <GitHubIcon className={appStyles.logo} />
         </a>
       </footer>
     </div>
