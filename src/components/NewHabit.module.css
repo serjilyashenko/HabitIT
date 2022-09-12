@@ -1,0 +1,19 @@
+.new_habit_form {
+  margin-bottom: 24px;
+}
+
+.new_habit_name_label {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.new_habit_name_label_input_container {
+  flex: 1 1;
+}
+
+.new_habit_name_label_input {
+  font-size: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}

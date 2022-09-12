@@ -25,20 +25,20 @@ export default function App() {
         </time>
       </header>
       <main className={appStyles.habit_list}>
-        <div className={appStyles.controls_bar}>
-          <button onClick={() => setIsEditing(!isEditing)}>
-            {isEditing ? 'Done' : 'Edit'}
-          </button>
-        </div>
         {!isEditing ? (
           <MainScreen
             habits={habits}
             completedHabitIds={completedHabitIds}
             onCompleteHabit={onCompleteHabit}
+            onEdit={() => setIsEditing(true)}
             addHabit={onAddHabit}
           />
         ) : (
-          <EditScreen habits={habits} onUpdateHabit={onUpdateHabit} />
+          <EditScreen
+            habits={habits}
+            onUpdateHabit={onUpdateHabit}
+            onDone={() => setIsEditing(false)}
+          />
         )}
       </main>
     </div>

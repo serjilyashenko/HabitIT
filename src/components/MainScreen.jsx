@@ -1,21 +1,19 @@
+import { ControlsBar } from './ControlsBar';
+import { NewHabit } from './NewHabit';
 import mainScreenStyles from './MainScreen.module.css';
 
 export function MainScreen({
   habits,
   completedHabitIds,
   onCompleteHabit,
+  onEdit,
   addHabit,
 }) {
-  function onSubmit(event) {
-    event.preventDefault();
-
-    const form = event.target;
-    addHabit(form.new_habit.value);
-    form.reset();
-  }
-
   return (
     <>
+      <ControlsBar>
+        <button onClick={onEdit}>Edit</button>
+      </ControlsBar>
       <ul className={mainScreenStyles.habits}>
         {habits
           .filter(({ deleted }) => !deleted)
@@ -32,20 +30,7 @@ export function MainScreen({
             </li>
           ))}
       </ul>
-      <form className={mainScreenStyles.new_habit_form} onSubmit={onSubmit}>
-        <div className={mainScreenStyles.new_habit_name_label}>
-          <div
-            className={mainScreenStyles.new_habit_name_label_input_container}
-          >
-            <input
-              name="new_habit"
-              className={mainScreenStyles.new_habit_name_label_input}
-              placeholder="Your habit"
-            />
-          </div>
-          <button type="submit">Add</button>
-        </div>
-      </form>
+      <NewHabit onAdd={addHabit} />
     </>
   );
 }

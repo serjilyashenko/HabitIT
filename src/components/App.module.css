@@ -7,10 +7,6 @@
   padding: 16px;
 }
 
-.controls_bar {
-  text-align: end;
-}
-
 .habit_list {
   background-color: var(--background-color);
   border: 1px solid black;

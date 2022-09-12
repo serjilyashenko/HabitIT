@@ -1,7 +1,8 @@
 import editScreenStyles from './EditScreen.module.css';
 import CircleButton from './CircleButton';
+import { ControlsBar } from './ControlsBar';
 
-export function EditScreen({ habits, onUpdateHabit }) {
+export function EditScreen({ habits, onUpdateHabit, onDone }) {
   const activeHabits = habits.filter(({ deleted }) => !deleted);
   const deletedHabits = habits.filter(({ deleted }) => deleted);
 
@@ -15,6 +16,9 @@ export function EditScreen({ habits, onUpdateHabit }) {
 
   return (
     <>
+      <ControlsBar>
+        <button onClick={onDone}>Done</button>
+      </ControlsBar>
       <ul>
         {activeHabits.map((habit) => (
           <li key={habit.id} className={editScreenStyles.habit_item_container}>
