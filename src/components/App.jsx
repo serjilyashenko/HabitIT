@@ -4,6 +4,7 @@ import { getToday } from '../utils/date';
 import { MainScreen } from './MainScreen';
 import { EditScreen } from './EditScreen';
 import { NewHabit } from './NewHabit';
+import githubLogo from '../assets/github.png';
 import appStyles from './App.module.css';
 
 export default function App() {
@@ -45,6 +46,15 @@ export default function App() {
           />
         )}
       </main>
+      <footer className={appStyles.footer}>
+        <a
+          href="https://github.com/serjilyashenko/HabitIT"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src={githubLogo} className={appStyles.logo} alt="GitHub logo" />
+        </a>
+      </footer>
     </div>
   );
 }
