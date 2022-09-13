@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { backupMemoState } from '../utils/memo';
+import { useHabit } from '../helpers/habit-context';
 import { ControlsBar } from './ControlsBar';
 import mainScreenStyles from './MainScreen.module.css';
-import { useHabit } from '../helpers/habit-context';
 
 export function MainScreen({ onEdit }) {
   const { habits, completedHabitIds, onCompleteHabit, onUpdateHabit } =
@@ -15,6 +16,7 @@ export function MainScreen({ onEdit }) {
           <button onClick={() => setIsRename(false)}>Done</button>
         ) : (
           <>
+            <button onClick={backupMemoState}>Backup</button>
             <button onClick={() => setIsRename(true)}>Rename</button>
             <button onClick={onEdit}>Edit</button>
           </>
