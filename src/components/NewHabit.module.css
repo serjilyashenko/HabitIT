@@ -2,8 +2,8 @@
   margin-bottom: 24px;
 }
 
-.new_habit_form:invalid button[type="submit"] {
-  opacity: .3;
+.new_habit_form:invalid button[type='submit'] {
+  opacity: 0.3;
   pointer-events: none;
 }
 

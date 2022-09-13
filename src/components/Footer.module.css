@@ -10,8 +10,9 @@
   will-change: filter;
   animation: logo-spin infinite 3s linear;
   color: var(--text-color);
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
+
 .logo:hover {
   height: 90px;
   width: 90px;

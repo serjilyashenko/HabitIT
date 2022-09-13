@@ -1,0 +1,4 @@
+#!/bin/sh
+# important: this file should be executable
+
+npm run pre-commit-hook

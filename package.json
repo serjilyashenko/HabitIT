@@ -11,7 +11,20 @@
     "eslint:check": "eslint --ext .js,.jsx --ignore-path .gitignore . --max-warnings=0",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "check:all": "npm run prettier:check && npm run eslint:check && npm run test"
+    "check:all": "npm run prettier:check && npm run eslint:check && npm run test",
+    "pre-commit-hook": "lint-staged",
+    "postinstall": "cp ./git-hooks/pre-commit ./.git/hooks"
+  },
+  "lint-staged": {
+    "**/*.*": [
+      "npm run prettier:check"
+    ],
+    "**/*.+(js|mjs|ts|jsx|tsx)": [
+      "npm run eslint:check"
+    ],
+    "**/*.+(test.js)": [
+      "jest --findRelatedTests"
+    ]
   },
   "dependencies": {
     "classnames": "2.3.1",
@@ -30,6 +43,7 @@
     "eslint-plugin-jest": "27.0.1",
     "eslint-plugin-react": "7.31.1",
     "jest": "27.5.1",
+    "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "vite": "3.0.9",
     "vite-plugin-svgr": "2.2.1"
