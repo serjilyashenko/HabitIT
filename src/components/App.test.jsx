@@ -70,5 +70,5 @@ test('Shows error message if the habit-state crush the app', async () => {
   expect(screen.getByRole('heading').innerHTML).toMatchInlineSnapshot(
     `"Oops...🐌"`
   );
-  expect(console.error).not.toHaveBeenCalled();
+  expect(console.error).toHaveBeenCalled();
 });

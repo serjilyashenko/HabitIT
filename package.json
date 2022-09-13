@@ -17,13 +17,11 @@
   },
   "lint-staged": {
     "**/*.*": [
-      "npm run prettier:check"
+      "npm run prettier:check",
+      "jest --findRelatedTests"
     ],
     "**/*.+(js|mjs|ts|jsx|tsx)": [
       "npm run eslint:check"
-    ],
-    "**/*.+(test.js)": [
-      "jest --findRelatedTests"
     ]
   },
   "dependencies": {
