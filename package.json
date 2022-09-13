@@ -9,7 +9,7 @@
     "prettier:check": "prettier --check --ignore-path .gitignore . --loglevel warn",
     "prettier:fix": "prettier --write --ignore-path .gitignore .",
     "eslint:check": "eslint --ext .js,.jsx --ignore-path .gitignore . --max-warnings=0",
-    "test": "jest",
+    "test": "jest --watchAll",
     "check:all": "npm run prettier:check && npm run eslint:check && npm run test"
   },
   "dependencies": {
