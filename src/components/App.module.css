@@ -13,39 +13,3 @@
     border: 1px var(--habit-color) solid;
   }
 }
-
-.footer {
-  display: flex;
-  justify-content: center;
-}
-
-.logo {
-  height: 80px;
-  width: 80px;
-  padding: 20px;
-  will-change: filter;
-  animation: logo-spin infinite 3s linear;
-  color: var(--text-color);
-  transition: all .3s ease-out;
-}
-.logo:hover {
-  height: 90px;
-  width: 90px;
-  margin-top: -5px;
-  animation-duration: 0.7s;
-}
-
-@keyframes logo-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(15deg);
-  }
-  75% {
-    transform: rotate(-15deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}

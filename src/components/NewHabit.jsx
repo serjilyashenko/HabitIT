@@ -1,11 +1,14 @@
+import { useHabit } from '../helpers/habit-context';
 import newHabitStyles from './NewHabit.module.css';
 
-export function NewHabit({ onAdd }) {
+export function NewHabit() {
+  const { onAddHabit } = useHabit();
+
   function onSubmit(event) {
     event.preventDefault();
 
     const form = event.target;
-    onAdd(form.new_habit.value);
+    onAddHabit(form.new_habit.value);
     form.reset();
   }
 
@@ -16,7 +19,7 @@ export function NewHabit({ onAdd }) {
           <input
             name="new_habit"
             className={newHabitStyles.new_habit_name_label_input}
-            placeholder="Your habit"
+            placeholder="Your new habit"
             required
           />
         </div>

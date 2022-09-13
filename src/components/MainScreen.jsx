@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { ControlsBar } from './ControlsBar';
 import mainScreenStyles from './MainScreen.module.css';
+import { useHabit } from '../helpers/habit-context';
 
-export function MainScreen({
-  habits,
-  completedHabitIds,
-  onCompleteHabit,
-  onUpdateHabit,
-  onEdit,
-}) {
+export function MainScreen({ onEdit }) {
+  const { habits, completedHabitIds, onCompleteHabit, onUpdateHabit } =
+    useHabit();
   const [isRename, setIsRename] = useState(false);
 
   return (

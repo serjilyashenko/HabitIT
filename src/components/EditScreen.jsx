@@ -1,8 +1,12 @@
-import editScreenStyles from './EditScreen.module.css';
+import { useHabit } from '../helpers/habit-context';
 import CircleButton from './CircleButton';
 import { ControlsBar } from './ControlsBar';
+import { NewHabit } from './NewHabit';
+import editScreenStyles from './EditScreen.module.css';
 
-export function EditScreen({ habits, onUpdateHabit, onDone }) {
+export function EditScreen({ onDone }) {
+  const { habits, onUpdateHabit } = useHabit();
+
   const activeHabits = habits.filter(({ deleted }) => !deleted);
   const deletedHabits = habits.filter(({ deleted }) => deleted);
 
@@ -43,6 +47,8 @@ export function EditScreen({ habits, onUpdateHabit, onDone }) {
           </li>
         ))}
       </ul>
+
+      <NewHabit />
 
       <h6>Deleted:</h6>
       <ul>

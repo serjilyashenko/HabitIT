@@ -1,7 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from './App';
-import * as MainScreenModule from './MainScreen';
+import * as mainScreenModule from './MainScreen';
+import * as habitStateModule from '../helpers/habit-state';
 import { CrushComponentMock } from '../../test/error';
 
 afterEach(() => {
@@ -38,9 +39,9 @@ test('Don`t crushes if complete on the next day', async () => {
   await waitFor(expect(screen.getByLabelText(/first(.*)habit/i)).toBeChecked);
 });
 
-test('Shows error message if the app crushes', async () => {
+test('Shows error message if a component crush the app', async () => {
   jest
-    .spyOn(MainScreenModule, 'MainScreen')
+    .spyOn(mainScreenModule, 'MainScreen')
     .mockImplementation(CrushComponentMock);
   jest.spyOn(console, 'error').mockImplementation(() => null);
 
@@ -54,5 +55,20 @@ test('Shows error message if the app crushes', async () => {
 });
 
 test('MainScreen spyOn is restored', () => {
-  expect(jest.isMockFunction(MainScreenModule.MainScreen)).toBeFalsy();
+  expect(jest.isMockFunction(mainScreenModule.MainScreen)).toBeFalsy();
+});
+
+test('Shows error message if the habit-state crush the app', async () => {
+  jest
+    .spyOn(habitStateModule, 'useHabitState')
+    .mockImplementation(CrushComponentMock);
+  jest.spyOn(console, 'error').mockImplementation(() => null);
+
+  render(<App />);
+
+  expect(screen.getByRole('heading')).toBeInTheDocument();
+  expect(screen.getByRole('heading').innerHTML).toMatchInlineSnapshot(
+    `"Oops...🐌"`
+  );
+  expect(console.error).toHaveBeenCalled();
 });
