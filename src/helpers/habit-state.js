@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useReducer } from 'react';
-import { getToday } from '../utils/date';
+import { getTodayForBrowsersTZ } from '../utils/date';
 import { getMemoState, setMemoState } from '../utils/memo';
 import { getInitialState } from './initial-habit-state';
 
@@ -35,7 +35,8 @@ export function reducer(state, action) {
       };
     }
     case 'HABIT_COMPLETE': {
-      const completed = state.history[getToday().toISOString()] || [];
+      const completed =
+        state.history[getTodayForBrowsersTZ().toISOString()] || [];
       const newCompleted = completed.includes(action.id)
         ? completed.filter((id) => id !== action.id)
         : [...completed, action.id];
@@ -44,7 +45,7 @@ export function reducer(state, action) {
         ...state,
         history: {
           ...state.history,
-          [getToday().toISOString()]: newCompleted,
+          [getTodayForBrowsersTZ().toISOString()]: newCompleted,
         },
       };
     }
@@ -52,7 +53,7 @@ export function reducer(state, action) {
 }
 
 export function useHabitState() {
-  const todayIso = getToday().toISOString();
+  const todayIso = getTodayForBrowsersTZ().toISOString();
 
   const initialState = useMemo(() => {
     return getMemoState() || getInitialState(todayIso);
@@ -82,6 +83,7 @@ export function useHabitState() {
 
   return {
     habits,
+    history,
     completedHabitIds,
     onAddHabit,
     onUpdateHabit,

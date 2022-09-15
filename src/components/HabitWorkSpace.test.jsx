@@ -5,6 +5,15 @@ import { HabitWorkSpace } from './HabitWorkSpace';
 
 jest.mock('../helpers/initial-habit-state');
 
+beforeEach(() => {
+  jest.spyOn(localStorage.__proto__, 'getItem').mockImplementation(() => null);
+});
+
+afterEach(() => {
+  jest.resetAllMocks(); // for mocks
+  jest.restoreAllMocks(); // for spyOn-s
+});
+
 test('It shows habit checklist by default', () => {
   render(<HabitWorkSpace />, { wrapper: HabitProvider });
 
@@ -55,16 +64,12 @@ test('Analytics mode switch', async () => {
   const analyticsButton = screen.getByRole('button', { name: /analytics/i });
   await userEvent.click(analyticsButton);
 
-  screen.debug();
-
   const doneButton = screen.getByRole('button', { name: /done/i });
   expect(analyticsButton).not.toBeInTheDocument();
   expect(doneButton).toBeInTheDocument();
-  expect(
-    screen.getByRole('heading', { name: /analytics/i })
-  ).toBeInTheDocument();
+  expect(screen.getByRole('diagram')).toBeInTheDocument();
 
   await userEvent.click(doneButton);
   expect(screen.getByLabelText(/first(.*)habit/i)).toBeInTheDocument();
-  expect(screen.queryByLabelText(/second(.*)habit/i)).not.toBeInTheDocument();
+  expect(screen.queryByLabelText(/second(.*)habit/i)).toBeInTheDocument();
 });

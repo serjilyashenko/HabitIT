@@ -1,8 +1,8 @@
-import { getToday } from '../utils/date';
+import { getTodayForBrowsersTZ } from '../utils/date';
 import headerStyles from './Header.module.css';
 
 export function Header() {
-  const today = getToday();
+  const today = getTodayForBrowsersTZ();
   return (
     <header className={headerStyles.header}>
       <h1>HabitIt🐌</h1>
