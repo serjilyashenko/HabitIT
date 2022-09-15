@@ -1,3 +1,4 @@
+import { backupMemoState } from '../utils/memo';
 import { useHabit } from '../helpers/habit-context';
 import CircleButton from './CircleButton';
 import { ControlsBar } from './ControlsBar';
@@ -21,6 +22,7 @@ export function EditScreen({ onDone }) {
   return (
     <>
       <ControlsBar>
+        <button onClick={backupMemoState}>Backup</button>
         <button onClick={onDone}>Done</button>
       </ControlsBar>
       <ul>
@@ -40,6 +42,7 @@ export function EditScreen({ onDone }) {
               <button
                 className={editScreenStyles.alert_button}
                 onClick={() => onDelete(habit.id)}
+                aria-label="delete"
               >
                 Delete
               </button>

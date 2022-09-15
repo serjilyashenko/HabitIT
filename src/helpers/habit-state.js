@@ -1,31 +1,7 @@
 import { useEffect, useMemo, useReducer } from 'react';
 import { getToday } from '../utils/date';
 import { getMemoState, setMemoState } from '../utils/memo';
-
-export const getInitialState = function (isoDate) {
-  return {
-    habits: [
-      {
-        id: 0,
-        name: 'Your first habit',
-        deleted: false,
-      },
-      {
-        id: 1,
-        name: 'Your second habit',
-        deleted: false,
-      },
-      {
-        id: 3,
-        name: 'Deleted habit',
-        deleted: true,
-      },
-    ],
-    history: {
-      [isoDate]: [0],
-    },
-  };
-};
+import { getInitialState } from './initial-habit-state';
 
 export function reducer(state, action) {
   switch (action.type) {

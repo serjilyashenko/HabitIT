@@ -5,6 +5,8 @@ import * as mainScreenModule from './MainScreen';
 import * as habitStateModule from '../helpers/habit-state';
 import { CrushComponentMock } from '../../test/error';
 
+jest.mock('../helpers/initial-habit-state');
+
 afterEach(() => {
   jest.useRealTimers();
   jest.resetAllMocks(); // for mocks
@@ -15,7 +17,7 @@ test('All habits are off on the next day', () => {
   jest.useFakeTimers().setSystemTime(new Date('2022-04-10'));
 
   const { rerender } = render(<App />);
-  userEvent.click(screen.getByLabelText(/first(.*)habit/i));
+  userEvent.click(screen.getByLabelText(/first(.*)test(.*)habit/i));
   userEvent.click(screen.getByLabelText(/second(.*)habit/i));
 
   jest.useFakeTimers().setSystemTime(new Date('2022-04-11'));
