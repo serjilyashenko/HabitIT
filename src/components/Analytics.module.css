@@ -1,0 +1,20 @@
+.calendar_block {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.calendar_figure figcaption {
+  font-size: 0.7em;
+  line-height: 0.8em;
+}
+
+.habit_section {
+  margin-bottom: 0.8em;
+}
+
+.habit_section h3 {
+  font-size: 0.8em;
+  margin-bottom: 0.2em;
+}

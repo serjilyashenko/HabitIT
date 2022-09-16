@@ -67,7 +67,7 @@ test('Analytics mode switch', async () => {
   const doneButton = screen.getByRole('button', { name: /done/i });
   expect(analyticsButton).not.toBeInTheDocument();
   expect(doneButton).toBeInTheDocument();
-  expect(screen.getByRole('diagram')).toBeInTheDocument();
+  expect(screen.queryAllByRole('table')).toHaveLength(2 * 2);
 
   await userEvent.click(doneButton);
   expect(screen.getByLabelText(/first(.*)habit/i)).toBeInTheDocument();

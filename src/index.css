@@ -94,6 +94,11 @@ input:not(input[type='radio']) {
   border: 1px solid var(--not-active);
 }
 
+figure {
+  padding: 0;
+  margin: 0;
+}
+
 @media (prefers-color-scheme: light) {
   a:hover {
     color: #747bff;
