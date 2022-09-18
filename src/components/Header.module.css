@@ -6,3 +6,32 @@
   font-size: calc(10px + 2vmin);
   padding: 16px;
 }
+
+.snail__jump {
+  display: inline-block;
+  animation: jump 1.2s;
+}
+
+@keyframes jump {
+  0% {
+    transform: translate(0, 0) scale(1, 1);
+  }
+  30% {
+    transform: translate(0, 9px) scale(1.25, 0.75);
+  }
+  40% {
+    transform: translate(0, -20px) scale(0.95, 1.05);
+  }
+  50% {
+    transform: translate(0, -30px) scale(0.95, 1.05);
+  }
+  55% {
+    transform: translate(0, 0) scale(0.95, 1.05);
+  }
+  60% {
+    transform: translate(0, 9px) scale(1.25, 0.75);
+  }
+  90% {
+    transform: translate(0, 0) scale(1, 1);
+  }
+}

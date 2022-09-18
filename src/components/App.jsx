@@ -8,13 +8,13 @@ import appStyles from './App.module.css';
 export function App() {
   return (
     <ErrorBoundary>
-      <Header />
-      <main className={appStyles.habit_work_space}>
-        <HabitProvider>
+      <HabitProvider>
+        <Header />
+        <main className={appStyles.habit_work_space}>
           <HabitWorkSpace />
-        </HabitProvider>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </HabitProvider>
     </ErrorBoundary>
   );
 }
