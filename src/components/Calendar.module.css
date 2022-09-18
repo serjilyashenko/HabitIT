@@ -17,6 +17,13 @@
   text-align: center;
 }
 
+@media (prefers-color-scheme: dark) {
+  .day {
+    background-color: #1a1a1a;
+    color: #aeaeae;
+  }
+}
+
 .day__header {
   background-color: transparent;
   font-size: 9px;
@@ -29,12 +36,13 @@
 }
 
 .day__today {
-  box-shadow: 0 0 0 1px var(--habit-color), 0 0 0 1px #f3f3f3 inset;
+  box-shadow: 0 0 0 1px var(--habit-color),
+    0 0 0 1px var(--background-color) inset;
 }
 
 .day__done {
   background-color: var(--habit-color);
-  color: #f3f3f3;
+  color: var(--background-color);
 }
 
 .day__disabled {
