@@ -1,6 +1,9 @@
 {
-  "testEnvironment": "jsdom",
-  "setupFilesAfterEnv": ["@testing-library/jest-dom"],
+  "testEnvironment": "jest-environment-jsdom",
+  "setupFilesAfterEnv": [
+    "@testing-library/jest-dom",
+    "<rootDir>/test/animation-mock.js"
+  ],
   "moduleNameMapper": {
     "\\.css$": "<rootDir>/test/style-mock.js",
     "\\.svg$": "<rootDir>/test/svg-mock.js"

@@ -1,8 +1,22 @@
-import { localStorageKey } from '../const';
+import {
+  actualStorageVersion,
+  localStorageKey,
+  constructLocalStorageKey,
+  veryFirstStorageVersion,
+} from './version';
+import { migrate } from './migrations';
 
 export function getMemoState() {
-  const memoState = localStorage.getItem(localStorageKey);
-  return JSON.parse(memoState);
+  for (let v = actualStorageVersion; v >= veryFirstStorageVersion; v--) {
+    const localStorageKey = constructLocalStorageKey(v);
+    const memoStateString = localStorage.getItem(localStorageKey);
+    const memoState = JSON.parse(memoStateString); // explicitly don't use try..catch to allow ErrorBoundary to do its job
+
+    if (memoState) {
+      return migrate(memoState);
+    }
+  }
+  return null;
 }
 
 export function setMemoState(state) {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useReducer } from 'react';
-import { getTodayForBrowsersTZ } from '../utils/date';
-import { getMemoState, setMemoState } from '../utils/memo';
-import { getInitialState } from './initial-habit-state';
+import { getLocalIsoToday } from '../utils/date';
+import { getMemoState, setMemoState } from './memo/memo';
+import { getFirstState } from './first-habit-state';
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -35,8 +35,8 @@ export function reducer(state, action) {
       };
     }
     case 'HABIT_COMPLETE': {
-      const completed =
-        state.history[getTodayForBrowsersTZ().toISOString()] || [];
+      const localIsoToday = getLocalIsoToday();
+      const completed = state.history[localIsoToday] || [];
       const newCompleted = completed.includes(action.id)
         ? completed.filter((id) => id !== action.id)
         : [...completed, action.id];
@@ -45,7 +45,7 @@ export function reducer(state, action) {
         ...state,
         history: {
           ...state.history,
-          [getTodayForBrowsersTZ().toISOString()]: newCompleted,
+          [localIsoToday]: newCompleted,
         },
       };
     }
@@ -53,15 +53,15 @@ export function reducer(state, action) {
 }
 
 export function useHabitState() {
-  const todayIso = getTodayForBrowsersTZ().toISOString();
+  const localIsoToday = getLocalIsoToday();
 
   const initialState = useMemo(() => {
-    return getMemoState() || getInitialState(todayIso);
-  }, [todayIso]);
+    return getMemoState() || getFirstState(localIsoToday);
+  }, [localIsoToday]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const { habits, history } = state;
-  const completedHabitIds = history?.[todayIso] || [];
+  const completedHabitIds = history?.[localIsoToday] || [];
 
   useEffect(() => {
     if (initialState !== state) {

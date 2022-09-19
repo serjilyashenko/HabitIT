@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { HabitProvider } from '../helpers/habit-context';
 import { HabitWorkSpace } from './HabitWorkSpace';
 
-jest.mock('../helpers/initial-habit-state');
+jest.mock('../helpers/first-habit-state');
 
 beforeEach(() => {
   jest.spyOn(localStorage.__proto__, 'getItem').mockImplementation(() => null);

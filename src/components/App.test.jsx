@@ -5,12 +5,32 @@ import * as mainScreenModule from './MainScreen';
 import * as habitStateModule from '../helpers/habit-state';
 import { CrushComponentMock } from '../../test/error';
 
-jest.mock('../helpers/initial-habit-state');
+jest.mock('../helpers/first-habit-state');
 
-afterEach(() => {
+beforeEach(() => {
   jest.useRealTimers();
   jest.resetAllMocks(); // for mocks
   jest.restoreAllMocks(); // for spyOn-s
+});
+
+test('It is possible to complete and un-complete a habit', async () => {
+  render(<App />);
+
+  const firstHabit = screen.getByLabelText(/first(.*)habit/i);
+  const secondHabit = screen.getByLabelText(/second(.*)habit/i);
+
+  expect(firstHabit).toBeChecked();
+  expect(secondHabit).not.toBeChecked();
+
+  await userEvent.click(firstHabit);
+  await userEvent.click(secondHabit);
+  expect(firstHabit).not.toBeChecked();
+  expect(secondHabit).toBeChecked();
+
+  await userEvent.click(firstHabit);
+  await userEvent.click(secondHabit);
+  expect(firstHabit).toBeChecked();
+  expect(secondHabit).not.toBeChecked();
 });
 
 test('All habits are off on the next day', () => {

@@ -15,9 +15,13 @@ https://habitit.netlify.app
 - Jest
 - Testing Library
 - Babel(only for Jest+React config)
+- LintStaged
+- git-hooks
 
 **Notes:**
 
 - LocalStorage persist habits
 - Keeps all history in LS
-- Tests are running on GitHub Actions.
+- Include Migrations of LS
+- Always in local timezone (without z of isoString)
+- Tests are started before build

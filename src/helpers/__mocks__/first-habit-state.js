@@ -1,5 +1,8 @@
-export const getInitialState = function (isoDate) {
+import { actualStorageVersion } from '../memo/version';
+
+export const getFirstState = function (localIsoDate) {
   return {
+    v: actualStorageVersion,
     habits: [
       {
         id: 0,
@@ -18,7 +21,8 @@ export const getInitialState = function (isoDate) {
       },
     ],
     history: {
-      [isoDate]: [0],
+      ['2022-09-15T00:00']: [0, 1],
+      [localIsoDate]: [0], // "2022-09-19T00:00" - Without Z !
     },
   };
 };

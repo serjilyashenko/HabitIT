@@ -1,6 +1,7 @@
 import { ControlsBar } from './ControlsBar';
 import { useHabit } from '../helpers/habit-context';
-import { convertToLocalIsoMonth, getTodayForBrowsersTZ } from '../utils/date';
+import { convertToLocalIsoMonth, getStartOfTheDay } from '../utils/date';
+import { backupMemoState } from '../helpers/memo/memo';
 import {
   getDoneHabitLocalIsoDates,
   getMonthHabitCount,
@@ -9,7 +10,7 @@ import Calendar from './Calendar';
 import styles from './Analytics.module.css';
 
 export function Analytics({ onDone }) {
-  const today = getTodayForBrowsersTZ();
+  const today = getStartOfTheDay();
   const monthAgo = new Date(today.getTime());
   monthAgo.setMonth(today.getMonth() - 1);
   const currentLocalIsoMonth = convertToLocalIsoMonth(today);
@@ -24,6 +25,7 @@ export function Analytics({ onDone }) {
   return (
     <>
       <ControlsBar>
+        <button onClick={backupMemoState}>Backup</button>
         <button onClick={onDone}>Done</button>
       </ControlsBar>
       {habits
