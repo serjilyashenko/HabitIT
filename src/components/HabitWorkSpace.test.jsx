@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HabitProvider } from '../helpers/habit-context';
 import { HabitWorkSpace } from './HabitWorkSpace';
+import { TodayProvider } from '../helpers/today-context';
 
 jest.mock('../helpers/first-habit-state');
 
@@ -14,8 +15,18 @@ afterEach(() => {
   jest.restoreAllMocks(); // for spyOn-s
 });
 
+function renderWithProviders() {
+  render(<HabitWorkSpace />, {
+    wrapper: ({ children }) => (
+      <TodayProvider>
+        <HabitProvider>{children}</HabitProvider>
+      </TodayProvider>
+    ),
+  });
+}
+
 test('It shows habit checklist by default', () => {
-  render(<HabitWorkSpace />, { wrapper: HabitProvider });
+  renderWithProviders();
 
   expect(
     screen.queryByRole('button', { name: /done/i })
@@ -34,7 +45,7 @@ test('It shows habit checklist by default', () => {
 });
 
 test('Edit mode delete success', async () => {
-  render(<HabitWorkSpace />, { wrapper: HabitProvider });
+  renderWithProviders();
 
   const editButton = screen.getByRole('button', { name: /edit/i });
   await userEvent.click(editButton);
@@ -59,7 +70,7 @@ test('Edit mode delete success', async () => {
 });
 
 test('Analytics mode switch', async () => {
-  render(<HabitWorkSpace />, { wrapper: HabitProvider });
+  renderWithProviders();
 
   const analyticsButton = screen.getByRole('button', { name: /analytics/i });
   await userEvent.click(analyticsButton);

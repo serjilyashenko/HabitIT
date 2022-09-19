@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from './App';
 import * as mainScreenModule from './MainScreen';
@@ -49,10 +49,10 @@ test('All habits are off on the next day', () => {
 
 test('Don`t crushes if complete on the next day', async () => {
   jest.useFakeTimers().setSystemTime(new Date('2022-04-10'));
-  const { rerender } = render(<App />);
+  render(<App />);
 
   jest.useFakeTimers().setSystemTime(new Date('2022-04-11'));
-  rerender(<App />);
+  fireEvent.focus(window); // click browser tab
 
   expect(screen.getByLabelText(/first(.*)habit/i)).not.toBeChecked();
 

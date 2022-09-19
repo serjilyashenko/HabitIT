@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useReducer } from 'react';
-import { getLocalIsoToday } from '../utils/date';
+import { useToday } from './today-context';
+import { convertToLocalIsoDate, getLocalIsoToday } from '../utils/date';
 import { getMemoState, setMemoState } from './memo/memo';
 import { getFirstState } from './first-habit-state';
 
@@ -53,7 +54,8 @@ export function reducer(state, action) {
 }
 
 export function useHabitState() {
-  const localIsoToday = getLocalIsoToday();
+  const today = useToday();
+  const localIsoToday = convertToLocalIsoDate(today);
 
   const initialState = useMemo(() => {
     return getMemoState() || getFirstState(localIsoToday);
