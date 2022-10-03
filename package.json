@@ -18,7 +18,7 @@
   "lint-staged": {
     "**/*.*": [
       "npm run prettier:check",
-      "jest --findRelatedTests"
+      "jest --findRelatedTests --passWithNoTests"
     ],
     "**/*.+(js|mjs|ts|jsx|tsx)": [
       "npm run eslint:check"
