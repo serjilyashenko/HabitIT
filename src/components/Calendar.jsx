@@ -19,7 +19,7 @@ export default function Calendar({
     dayEntities.push({
       day: date.getDate(),
       localIsoDate,
-      weekday: date.getDay(),
+      weekday: date.getDay() || 7, // [mon, tue, wed, thu, fri, sat, sun] : [1, 2, 3, 4, 5, 6, 0] -> [1, 2, 3, 4, 5, 6, 7]
       isToday,
       isDone: doneLocalIsoDates.includes(localIsoDate),
       isFuture,
@@ -53,7 +53,9 @@ export default function Calendar({
               [styles.day__done]: isDone,
               [styles.day__disabled]: isFuture,
             })}
-            style={{ gridRowStart: index === 0 ? weekday : 'unset' }}
+            style={{
+              gridRowStart: index === 0 ? weekday : 'unset',
+            }}
           >
             <time dateTime={localIsoDate}>{day}</time>
           </div>
