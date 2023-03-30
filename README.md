@@ -20,7 +20,7 @@ https://habitit.netlify.app
 
 **Notes:**
 
-- LocalStorage persist habits
+- 🚨LocalStorage persist habits (LS keeps data for about week)
 - Keeps all history in LS
 - Include Migrations of LS
 - Always in local timezone (without z of isoString)

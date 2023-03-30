@@ -1,5 +1,8 @@
 import classNames from 'classnames';
-import { convertToLocalIsoDate, convertToLocalIsoMonth } from '../utils/date';
+import {
+  convertToLocalIsoDate,
+  convertToLocalIsoMonth,
+} from '../utils/isoDates';
 import styles from './Calendar.module.css';
 
 export default function Calendar({

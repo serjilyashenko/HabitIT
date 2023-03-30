@@ -1,7 +1,7 @@
 import { ControlsBar } from './ControlsBar';
 import { useToday } from '../helpers/today-context';
 import { useHabit } from '../helpers/habit-context';
-import { convertToLocalIsoMonth } from '../utils/date';
+import { convertToLocalIsoMonth } from '../utils/isoDates';
 import { backupMemoState } from '../helpers/memo/memo';
 import {
   getDoneHabitLocalIsoDates,
@@ -9,15 +9,17 @@ import {
 } from '../helpers/habit-analytics';
 import Calendar from './Calendar';
 import styles from './Analytics.module.css';
+import { startOfPrevMonth } from '../utils/dateFunctions';
 
 export function Analytics({ onDone }) {
   const today = useToday();
-  const monthAgo = new Date(today.getTime());
-  monthAgo.setMonth(today.getMonth() - 1);
+  const startOfPreviousMonth = startOfPrevMonth(today);
+
   const currentLocalIsoMonth = convertToLocalIsoMonth(today);
   const currentMonthName = today.toLocaleString('default', { month: 'short' });
-  const previousLocalIsoMonth = convertToLocalIsoMonth(monthAgo);
-  const previousMonthName = monthAgo.toLocaleString('default', {
+
+  const previousLocalIsoMonth = convertToLocalIsoMonth(startOfPreviousMonth);
+  const previousMonthName = startOfPreviousMonth.toLocaleString('default', {
     month: 'short',
   });
 

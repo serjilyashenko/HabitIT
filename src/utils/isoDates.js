@@ -1,3 +1,5 @@
+import { generateStartOfTheDay } from './dateFunctions';
+
 // Local (despite TZ!) Day
 export function convertToLocalIsoDate(date) {
   const year = date.getFullYear();
@@ -15,16 +17,8 @@ export function convertToLocalIsoMonth(date) {
   return `${year}-${month}T00:00`; // ! without Z
 }
 
-// Browser's start of the day
-export function getStartOfTheDay() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  return today;
-}
-
 // Local (despite TZ!) Today
 export function getLocalIsoToday() {
-  const startOfTheDay = getStartOfTheDay();
+  const startOfTheDay = generateStartOfTheDay();
   return convertToLocalIsoDate(startOfTheDay);
 }

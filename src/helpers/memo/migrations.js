@@ -1,5 +1,5 @@
 import { actualStorageVersion } from './version';
-import { convertToLocalIsoDate } from '../../utils/date';
+import { convertToLocalIsoDate } from '../../utils/isoDates';
 
 function migrateToV2(state) {
   const historyEntriesV2 = Object.entries(state.history).map(

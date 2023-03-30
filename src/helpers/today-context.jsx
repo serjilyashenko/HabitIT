@@ -1,15 +1,16 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { convertToLocalIsoDate, getStartOfTheDay } from '../utils/date';
+import { convertToLocalIsoDate } from '../utils/isoDates';
+import { generateStartOfTheDay } from '../utils/dateFunctions';
 
 const TodayContext = createContext(null);
 
 export function TodayProvider({ children }) {
-  const [today, setToday] = useState(getStartOfTheDay());
+  const [today, setToday] = useState(generateStartOfTheDay());
 
   useEffect(() => {
     function checkToday() {
       setToday((prev) => {
-        const newToday = getStartOfTheDay();
+        const newToday = generateStartOfTheDay();
         if (convertToLocalIsoDate(newToday) !== convertToLocalIsoDate(prev)) {
           return newToday;
         } else {

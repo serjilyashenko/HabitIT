@@ -1,4 +1,4 @@
-import { getLocalIsoToday } from './date';
+import { getLocalIsoToday } from './isoDates';
 
 beforeEach(() => {
   jest.useRealTimers();

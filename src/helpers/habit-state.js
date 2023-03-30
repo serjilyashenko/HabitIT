@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useReducer } from 'react';
 import { useToday } from './today-context';
-import { convertToLocalIsoDate, getLocalIsoToday } from '../utils/date';
+import { convertToLocalIsoDate, getLocalIsoToday } from '../utils/isoDates';
 import { getMemoState, setMemoState } from './memo/memo';
 import { getFirstState } from './first-habit-state';
 
