@@ -8,6 +8,7 @@ export function Footer() {
         href="https://github.com/serjilyashenko/HabitIT"
         target="_blank"
         rel="noreferrer"
+        aria-label="github link"
       >
         <GitHubIcon className={footerStyles.logo} />
       </a>
