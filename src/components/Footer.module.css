@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.link {
+  line-height: 0;
+}
+
 .logo {
   height: 80px;
   width: 80px;
@@ -16,7 +20,7 @@
 .logo:hover {
   height: 90px;
   width: 90px;
-  margin-top: -5px;
+  padding: 15px;
   animation-duration: 0.7s;
 }
 

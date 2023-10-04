@@ -5,6 +5,7 @@ export function Footer() {
   return (
     <footer className={footerStyles.footer}>
       <a
+        className={footerStyles.link}
         href="https://github.com/serjilyashenko/HabitIT"
         target="_blank"
         rel="noreferrer"
