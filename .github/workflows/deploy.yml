@@ -4,7 +4,7 @@ run-name: deploy to netlify 🚀
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
