@@ -9,7 +9,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <h1>
-        HabitIt.
+        HabitIt
         <FunnySnail />
       </h1>
       <time dateTime={convertToLocalIsoDate(today).split('T')[0]}>
