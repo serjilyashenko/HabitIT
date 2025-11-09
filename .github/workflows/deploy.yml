@@ -1,0 +1,45 @@
+name: deploy
+run-name: deploy to netlify 🚀
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Netlify
+        run: npm install -g netlify-cli@17.22.1
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+
+      - name: Deploy to Netlify
+        id: netlify_deploy
+        run: |
+          netlify deploy \
+            --prod \
+            --dir dist \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --auth ${{ secrets.NETLIFY_TOKEN }} \
