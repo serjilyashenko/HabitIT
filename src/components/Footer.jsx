@@ -1,4 +1,4 @@
-import { ReactComponent as GitHubIcon } from '../assets/github.svg';
+import GitHubIcon from '../assets/github.svg?react';
 import footerStyles from './Footer.module.css';
 
 export function Footer() {
