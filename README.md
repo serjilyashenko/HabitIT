@@ -12,9 +12,9 @@ https://habitit.netlify.app
 - React
 - Prettier
 - ESlint
-- Jest
+- ~~Jest~~ Vitest
 - Testing Library
-- Babel(only for Jest+React config)
+- ~~Babel(only for Jest+React config)~~
 - LintStaged
 - git-hooks
 

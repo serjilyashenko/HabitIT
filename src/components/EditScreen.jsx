@@ -1,8 +1,8 @@
-import { useHabit } from '../helpers/habit-context';
 import CircleButton from './CircleButton';
 import { ControlsBar } from './ControlsBar';
 import { NewHabit } from './NewHabit';
 import editScreenStyles from './EditScreen.module.css';
+import { useHabit } from '../hooks/use-habit.js';
 
 export function EditScreen({ onDone }) {
   const { habits, onUpdateHabit } = useHabit();

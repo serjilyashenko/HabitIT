@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useReducer } from 'react';
-import { useToday } from './today-context';
 import { convertToLocalIsoDate, getLocalIsoToday } from '../utils/isoDates';
 import { getMemoState, setMemoState } from './memo/memo';
 import { getFirstState } from './first-habit-state';
+import { useToday } from '../hooks/use-today.js';
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -69,7 +69,7 @@ export function useHabitState() {
     if (initialState !== state) {
       setMemoState(state);
     }
-  }, [state]);
+  }, [state, initialState]);
 
   function onAddHabit(title) {
     dispatch({ type: 'ADD_HABIT', name: title });
