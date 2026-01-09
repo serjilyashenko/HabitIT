@@ -5,12 +5,12 @@ import * as mainScreenModule from './MainScreen';
 import * as habitStateModule from '../helpers/habit-state';
 import { CrushComponentMock } from '../../test/error';
 
-jest.mock('../helpers/first-habit-state');
+vi.mock('../helpers/first-habit-state');
 
 beforeEach(() => {
-  jest.useRealTimers();
-  jest.resetAllMocks(); // for mocks
-  jest.restoreAllMocks(); // for spyOn-s
+  vi.useRealTimers();
+  vi.resetAllMocks(); // for mocks
+  vi.restoreAllMocks(); // for spyOn-s
 });
 
 test('It is possible to complete and un-complete a habit', async () => {
@@ -34,13 +34,13 @@ test('It is possible to complete and un-complete a habit', async () => {
 });
 
 test('All habits are off on the next day', () => {
-  jest.useFakeTimers().setSystemTime(new Date('2022-04-10'));
+  vi.useFakeTimers().setSystemTime(new Date('2022-04-10'));
 
   const { rerender } = render(<App />);
   userEvent.click(screen.getByLabelText(/first(.*)test(.*)habit/i));
   userEvent.click(screen.getByLabelText(/second(.*)habit/i));
 
-  jest.useFakeTimers().setSystemTime(new Date('2022-04-11'));
+  vi.useFakeTimers().setSystemTime(new Date('2022-04-11'));
   rerender(<App />);
 
   expect(screen.getByLabelText(/first(.*)habit/i)).not.toBeChecked();
@@ -48,10 +48,10 @@ test('All habits are off on the next day', () => {
 });
 
 test('Don`t crushes if complete on the next day', async () => {
-  jest.useFakeTimers().setSystemTime(new Date('2022-04-10'));
+  vi.useFakeTimers().setSystemTime(new Date('2022-04-10'));
   render(<App />);
 
-  jest.useFakeTimers().setSystemTime(new Date('2022-04-11'));
+  vi.useFakeTimers().setSystemTime(new Date('2022-04-11'));
   fireEvent.focus(window); // click browser tab
 
   expect(screen.getByLabelText(/first(.*)habit/i)).not.toBeChecked();
@@ -62,10 +62,10 @@ test('Don`t crushes if complete on the next day', async () => {
 });
 
 test('Shows error message if a component crush the app', async () => {
-  jest
-    .spyOn(mainScreenModule, 'MainScreen')
-    .mockImplementation(CrushComponentMock);
-  jest.spyOn(console, 'error').mockImplementation(() => null);
+  vi.spyOn(mainScreenModule, 'MainScreen').mockImplementation(
+    CrushComponentMock
+  );
+  vi.spyOn(console, 'error').mockImplementation(() => null);
 
   render(<App />);
 
@@ -77,14 +77,14 @@ test('Shows error message if a component crush the app', async () => {
 });
 
 test('MainScreen spyOn is restored', () => {
-  expect(jest.isMockFunction(mainScreenModule.MainScreen)).toBeFalsy();
+  expect(vi.isMockFunction(mainScreenModule.MainScreen)).toBeFalsy();
 });
 
 test('Shows error message if the habit-state crush the app', async () => {
-  jest
-    .spyOn(habitStateModule, 'useHabitState')
-    .mockImplementation(CrushComponentMock);
-  jest.spyOn(console, 'error').mockImplementation(() => null);
+  vi.spyOn(habitStateModule, 'useHabitState').mockImplementation(
+    CrushComponentMock
+  );
+  vi.spyOn(console, 'error').mockImplementation(() => null);
 
   render(<App />);
 

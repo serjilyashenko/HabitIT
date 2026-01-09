@@ -3,11 +3,11 @@ import { useHabitState } from './habit-state';
 import { TodayProvider } from './today-context';
 
 beforeEach(() => {
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 test('Initial state is calculated correctly', () => {
-  jest.useFakeTimers().setSystemTime(new Date('2022-09-17T08:12:30.153Z'));
+  vi.useFakeTimers().setSystemTime(new Date('2022-09-17T08:12:30.153Z'));
 
   const { result } = renderHook(() => useHabitState(), {
     wrapper: TodayProvider,
@@ -28,7 +28,7 @@ test('Initial state is calculated correctly', () => {
 });
 
 test('Complete action applies to current day correctly', () => {
-  jest.useFakeTimers().setSystemTime(new Date('2022-09-17T08:12:30.153Z'));
+  vi.useFakeTimers().setSystemTime(new Date('2022-09-17T08:12:30.153Z'));
 
   const { result } = renderHook(() => useHabitState(), {
     wrapper: TodayProvider,

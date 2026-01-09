@@ -9,8 +9,7 @@
     "prettier:check": "prettier --check --ignore-path .gitignore . --loglevel warn",
     "prettier:fix": "prettier --write --ignore-path .gitignore .",
     "eslint:check": "eslint --ext .js,.jsx . --max-warnings=0",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test": "vitest",
     "check:all": "npm run prettier:check && npm run eslint:check && npm run test",
     "pre-commit-hook": "lint-staged",
     "postinstall": "cp ./git-hooks/pre-commit ./.git/hooks"
@@ -39,10 +38,11 @@
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "0.4.24",
     "jest": "29.0.3",
-    "jest-environment-jsdom": "29.0.3",
+    "jest-environment-jsdom": "30.2.0",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "vite": "7.2.4",
-    "vite-plugin-svgr": "4.5.0"
+    "vite-plugin-svgr": "4.5.0",
+    "vitest": "4.0.16"
   }
 }
