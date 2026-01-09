@@ -6,5 +6,13 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    css: true,
+    setupFiles: ['./setupTests.ts'],
+    resolve: {
+      alias: {
+        '\\.css$': '<rootDir>/test/style-mock.js',
+        '\\.svg$': '<rootDir>/test/svg-mock.js',
+      },
+    },
   },
 });

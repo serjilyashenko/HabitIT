@@ -4,15 +4,15 @@ import { HabitProvider } from '../helpers/habit-context';
 import { HabitWorkSpace } from './HabitWorkSpace';
 import { TodayProvider } from '../helpers/today-context';
 
-jest.mock('../helpers/first-habit-state');
+vi.mock('../helpers/first-habit-state');
 
 beforeEach(() => {
-  jest.spyOn(localStorage.__proto__, 'getItem').mockImplementation(() => null);
+  vi.spyOn(localStorage.__proto__, 'getItem').mockImplementation(() => null);
 });
 
 afterEach(() => {
-  jest.resetAllMocks(); // for mocks
-  jest.restoreAllMocks(); // for spyOn-s
+  vi.resetAllMocks(); // for mocks
+  vi.restoreAllMocks(); // for spyOn-s
 });
 
 function renderWithProviders() {
