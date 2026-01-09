@@ -15,18 +15,22 @@ afterEach(() => {
   vi.restoreAllMocks(); // for spyOn-s
 });
 
-function renderWithProviders() {
-  render(<HabitWorkSpace />, {
-    wrapper: ({ children }) => (
-      <TodayProvider>
-        <HabitProvider>{children}</HabitProvider>
-      </TodayProvider>
-    ),
-  });
+function setup() {
+  const user = userEvent.setup();
+  return {
+    user,
+    ...render(<HabitWorkSpace />, {
+      wrapper: ({ children }) => (
+        <TodayProvider>
+          <HabitProvider>{children}</HabitProvider>
+        </TodayProvider>
+      ),
+    }),
+  };
 }
 
 test('It shows habit checklist by default', () => {
-  renderWithProviders();
+  setup();
 
   expect(
     screen.queryByRole('button', { name: /done/i })
@@ -45,10 +49,10 @@ test('It shows habit checklist by default', () => {
 });
 
 test('Edit mode delete success', async () => {
-  renderWithProviders();
+  const { user } = setup();
 
   const editButton = screen.getByRole('button', { name: /edit/i });
-  await userEvent.click(editButton);
+  await user.click(editButton);
 
   const doneButton = screen.getByRole('button', { name: /done/i });
   expect(editButton).not.toBeInTheDocument();
@@ -57,9 +61,9 @@ test('Edit mode delete success', async () => {
   const deleteSecondHabitButton = within(
     screen.getByText(/second(.*)habit/i).parentNode
   ).getByLabelText('delete');
-  await userEvent.click(deleteSecondHabitButton);
+  await user.click(deleteSecondHabitButton);
 
-  await userEvent.click(doneButton);
+  await user.click(doneButton);
   expect(screen.getByLabelText(/first(.*)habit/i)).toBeInTheDocument();
   expect(screen.getByLabelText(/first(.*)habit/i)).toHaveAttribute(
     'type',
@@ -70,17 +74,17 @@ test('Edit mode delete success', async () => {
 });
 
 test('Analytics mode switch', async () => {
-  renderWithProviders();
+  const { user } = setup();
 
   const analyticsButton = screen.getByRole('button', { name: /analytics/i });
-  await userEvent.click(analyticsButton);
+  await user.click(analyticsButton);
 
   const doneButton = screen.getByRole('button', { name: /done/i });
   expect(analyticsButton).not.toBeInTheDocument();
   expect(doneButton).toBeInTheDocument();
   expect(screen.queryAllByRole('table')).toHaveLength(2 * 2);
 
-  await userEvent.click(doneButton);
+  await user.click(doneButton);
   expect(screen.getByLabelText(/first(.*)habit/i)).toBeInTheDocument();
   expect(screen.queryByLabelText(/second(.*)habit/i)).toBeInTheDocument();
 });
