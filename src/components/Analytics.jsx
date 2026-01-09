@@ -1,6 +1,4 @@
 import { ControlsBar } from './ControlsBar';
-import { useToday } from '../helpers/today-context';
-import { useHabit } from '../helpers/habit-context';
 import { convertToLocalIsoMonth } from '../utils/isoDates';
 import { backupMemoState } from '../helpers/memo/memo';
 import {
@@ -10,6 +8,8 @@ import {
 import Calendar from './Calendar';
 import styles from './Analytics.module.css';
 import { startOfPrevMonth } from '../utils/dateFunctions';
+import { useToday } from '../hooks/use-today.js';
+import { useHabit } from '../hooks/use-habit.js';
 
 export function Analytics({ onDone }) {
   const today = useToday();

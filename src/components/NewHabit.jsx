@@ -1,4 +1,4 @@
-import { useHabit } from '../helpers/habit-context';
+import { useHabit } from '../hooks/use-habit.js';
 import newHabitStyles from './NewHabit.module.css';
 
 export function NewHabit() {

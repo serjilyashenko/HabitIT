@@ -1,7 +1,7 @@
-import { useToday } from '../helpers/today-context';
 import { convertToLocalIsoDate } from '../utils/isoDates';
 import { FunnySnail } from './FunnySnail';
 import styles from './Header.module.css';
+import { useToday } from '../hooks/use-today.js';
 
 export function Header() {
   const today = useToday();

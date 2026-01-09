@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHabit } from '../helpers/habit-context';
+import { useHabit } from '../hooks/use-habit.js';
 import { ControlsBar } from './ControlsBar';
 import mainScreenStyles from './MainScreen.module.css';
 

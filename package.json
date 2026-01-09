@@ -2,6 +2,7 @@
   "name": "habitit",
   "private": true,
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "npm run check:all && vite build",
@@ -9,7 +10,8 @@
     "prettier:check": "prettier --check --ignore-path .gitignore . --loglevel warn",
     "prettier:fix": "prettier --write --ignore-path .gitignore .",
     "eslint:check": "eslint --ext .js,.jsx . --max-warnings=0",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "check:all": "npm run prettier:check && npm run eslint:check && npm run test",
     "pre-commit-hook": "lint-staged",
     "postinstall": "cp ./git-hooks/pre-commit ./.git/hooks"
@@ -17,7 +19,7 @@
   "lint-staged": {
     "**/*.*": [
       "npm run prettier:check",
-      "jest --findRelatedTests --passWithNoTests"
+      "vitest run --passWithNoTests"
     ],
     "**/*.+(js|mjs|ts|jsx|tsx)": [
       "npm run eslint:check"
@@ -34,6 +36,7 @@
     "@testing-library/react": "16.3.1",
     "@testing-library/user-event": "14.6.1",
     "@vitejs/plugin-react": "5.1.1",
+    "@vitest/eslint-plugin": "^1.6.6",
     "eslint": "9.39.1",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "0.4.24",

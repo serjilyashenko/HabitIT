@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useHabit } from '../helpers/habit-context';
+import { useHabit } from '../hooks/use-habit.js';
 import styles from './FunnySnail.module.css';
 
 export function FunnySnail() {
