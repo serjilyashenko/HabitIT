@@ -50,6 +50,9 @@ export function reducer(state, action) {
         },
       };
     }
+    case 'RESTORE_FROM_BACKUP': {
+      return action.state;
+    }
   }
 }
 
@@ -83,6 +86,10 @@ export function useHabitState() {
     dispatch({ type: 'HABIT_COMPLETE', id: habitId });
   }
 
+  function onRestoreFromBackup(state) {
+    dispatch({ type: 'RESTORE_FROM_BACKUP', state });
+  }
+
   return {
     habits,
     history,
@@ -90,5 +97,6 @@ export function useHabitState() {
     onAddHabit,
     onUpdateHabit,
     onCompleteHabit,
+    onRestoreFromBackup,
   };
 }

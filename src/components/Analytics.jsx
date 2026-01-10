@@ -10,6 +10,7 @@ import styles from './Analytics.module.css';
 import { startOfPrevMonth } from '../utils/dateFunctions';
 import { useToday } from '../hooks/use-today.js';
 import { useHabit } from '../hooks/use-habit.js';
+import { RestoreFromBackup } from './RestoreFromBackup.jsx';
 
 export function Analytics({ onDone }) {
   const today = useToday();
@@ -28,6 +29,7 @@ export function Analytics({ onDone }) {
   return (
     <>
       <ControlsBar>
+        <RestoreFromBackup />
         <button onClick={backupMemoState}>Backup</button>
         <button onClick={onDone}>Done</button>
       </ControlsBar>
