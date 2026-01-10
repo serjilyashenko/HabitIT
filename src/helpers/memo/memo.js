@@ -5,6 +5,8 @@ import {
   veryFirstStorageVersion,
 } from './version';
 import { migrate } from './migrations';
+import { downloadBlob } from '../persistence/download-blob.js';
+import { shareFile } from '../persistence/share-file.js';
 
 export function getMemoState() {
   for (let v = actualStorageVersion; v >= veryFirstStorageVersion; v--) {
@@ -23,19 +25,20 @@ export function setMemoState(state) {
   localStorage.setItem(localStorageKey, JSON.stringify(state));
 }
 
-export function backupMemoState() {
+export async function backupMemoState() {
   const memoState = localStorage.getItem(localStorageKey);
-  const blob = new Blob([memoState], { type: 'text/plain' });
+  const fileName = 'habit-backup.json';
+  const blob = new Blob([memoState], { type: 'application/json' });
 
   if (navigator?.share) {
-    navigator.share({
-      files: [new File([blob], 'habit-backup.txt')],
-    });
+    try {
+      await shareFile(new File([blob], fileName));
+    } catch (e) {
+      if (e.name !== 'AbortError') {
+        downloadBlob(blob, fileName);
+      }
+    }
   } else {
-    const link = document.createElement('a');
-
-    link.download = 'habit-backup.txt';
-    link.href = URL.createObjectURL(blob);
-    link.click();
+    downloadBlob(blob, fileName);
   }
 }
